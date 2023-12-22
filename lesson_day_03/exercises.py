@@ -1,5 +1,5 @@
 # def f(x, y):
-#     added = (x * x) + (y * y)
+#     added = x**2 + y**2
 #     return added
 
 # result = f(5, 6)
