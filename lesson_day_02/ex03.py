@@ -15,4 +15,4 @@ try:
         
     
 except:
-    print('Bad Score')
+    print('Bad Scoreeeeea')
