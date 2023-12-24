@@ -366,3 +366,19 @@
 # for i in range(10,0,-1):
 
 #   print(i)
+
+
+
+# p = 3 
+# sum = 0
+# count = 0  
+
+# while p > 0:
+#     count += 1
+#     numbers = int(input('Enter a number:'))
+#     sum += numbers
+#     p -= 1
+    
+# average = sum/count
+
+# print("Average of given numbers:", average)
