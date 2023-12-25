@@ -142,18 +142,18 @@
 # while n != 0:
 #     n = int(input("Enter zero to quit: "))
 
-# num = int(input("Enter a number: "))
-# b = 0
-# p = 1
-# n = num
+num = int(input("Enter a number: "))
+b = 0
+p = 1
+n = num
 
-# while n>0:
-#     rem = n%2
-#     b += rem * p
-#     p = p*10
-#     n = n//2
+while n>0:
+    rem = n%2
+    b += rem * p
+    p = p*10
+    n = n//2
 
-# print("Binary value: ",b)
+print("Binary value: ",b)
 
 # p = 5
 # sum = 0
