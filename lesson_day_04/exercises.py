@@ -43,32 +43,38 @@ print('===========================')
 print('Lesson Day 04 ~ Exercises 4')
 print('===========================')
 
+def convert_to_binary():
+    num = int(input("Enter a number: "))
+    binary = 0
+    p = 1
 
-num = int(input("Enter a number: "))
-binary = 0
-p = 1
+    while num > 0:
+        rem = num % 2
+        binary += rem * p
+        p = p * 10
+        num = num // 2
 
-while num > 0:
-    rem = num % 2
-    binary += rem * p
-    p = p * 10
-    num = num //2
+    print("Binary value: ",binary)
+convert_to_binary()
 
-print("Binary value: ",binary)
+
+
 
 print('===========================')
 print('Lesson Day 04 ~ Exercises 5')
 print('===========================')
 
+def convert_to_decimal():
+    num = int(input("Enter a number: "))
+    decimal = 0
+    p = 1
 
-num = int(input("Enter a number: "))
-decimal = 0
-p = 1
+    while num != 0:
+        rem = num % 10
+        decimal = decimal + (rem * p)
+        p = p * 2
+        num = num // 10
 
-while num != 0:
-    rem = num % 10
-    decimal = decimal + (rem * p)
-    p = p * 2
-    num = int(num / 10)
-
-print("Decimal value: ", decimal)
+    print("Decimal value: ", decimal)
+    
+convert_to_decimal()
