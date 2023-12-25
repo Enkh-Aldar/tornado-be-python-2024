@@ -50,9 +50,9 @@ def convert_to_binary():
 
     while num > 0:
         rem = num % 2
+        num = num // 2
         binary += rem * p
         p = p * 10
-        num = num // 2
 
     print("Binary value: ",binary)
 convert_to_binary()
@@ -71,7 +71,7 @@ def convert_to_decimal():
 
     while num != 0:
         rem = num % 10
-        decimal = decimal + (rem * p)
+        decimal = decimal + rem * p
         p = p * 2
         num = num // 10
 
