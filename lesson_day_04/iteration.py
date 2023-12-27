@@ -37,3 +37,10 @@
 #     total = total + element
 # print('Total:', total)
 
+
+# for element in range(1, 11):
+#     print(element)
+    
+
+
+print(len('Hello World'))
