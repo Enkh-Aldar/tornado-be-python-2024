@@ -39,23 +39,23 @@
 # print(multi)
 
 
-print('===========================')
-print('Lesson Day 04 ~ Exercises 4')
-print('===========================')
+# print('===========================')
+# print('Lesson Day 04 ~ Exercises 4')
+# print('===========================')
 
-def convert_to_binary():
-    num = int(input("Enter a number: "))
-    binary = 0
-    p = 1
+# def convert_to_binary():
+#     num = int(input("Enter a number: "))
+#     binary = 0
+#     p = 1
 
-    while num > 0:
-        rem = num % 2
-        num = num // 2
-        binary += rem * p
-        p = p * 10
+#     while num > 0:
+#         rem = num % 2
+#         num = num // 2
+#         binary += rem * p
+#         p = p * 10
 
-    print("Binary value: ",binary)
-convert_to_binary()
+#     print("Binary value: ",binary)
+# convert_to_binary()
 
 
 
@@ -116,3 +116,30 @@ def convert_to_decimal(n):
 num = input('Enter a number:')
 
 print(convert_to_decimal(num))
+
+# def convert_to_decimal():
+#     num = int(input("Enter a number: "))
+#     decimal = 0
+#     p = 1
+
+#     while num != 0:
+#         rem = num % 10
+#         decimal = decimal + rem * p
+#         p = p * 2
+#         num = num // 10
+
+#     print("Decimal value: ", decimal)
+    
+# convert_to_decimal()
+
+print('===========================')
+print('Lesson Day 04 ~ Exercises 6')
+print('===========================')
+
+fruit = 'banana'
+index = 0
+while index < len(fruit):
+    letter = fruit[index]
+    print(letter)
+
+    index = index + 1

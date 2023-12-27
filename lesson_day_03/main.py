@@ -125,17 +125,17 @@
 
 # print(fruitsList)
 
-# i = 0 
-# word = "Hello"
+i = 0 
+word = "Hello"
 
 
-# while i < len(word):
-#     if word[i] == "e" or word[i] =="o":
-#         i += 1
-#         continue
+while i < len(word):
+    if word[i] == "e" or word[i] =="o":
+        i += 1
+        continue
 
-#     print("Returned letter",word[i])
-#     i += 1
+    print("Returned letter",word[i])
+    i += 1
 
 # n = int(input("Enter a number: "))
 
