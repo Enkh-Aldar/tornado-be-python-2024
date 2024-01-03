@@ -8,6 +8,7 @@ except:
     exit()
 
 
+
 foutname = input('Enter a file name: ')
 fouthand = open(foutname, 'w')
 

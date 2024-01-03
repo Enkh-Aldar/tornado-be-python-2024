@@ -10,12 +10,12 @@
 #     n = n - 1
 # print('Blastoff')
 
-# while True:
-#     line = input('>')
-#     if line == 'done':
-#         break
-#     print(line)
-# print('The End')
+while True:
+    line = input('>')
+    if line == 'done':
+        break
+    print(line)
+print('The End')
 
 # friends = ['Joseph', 'Glenn', 'Sally']
 # for friend in friends:
