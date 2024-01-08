@@ -6,24 +6,26 @@ except:
     print('File Cannot be opened:', fname)
     exit()
     
+file_list = fhand.read()
+# print(file_list)
+
+letters = 'abcdefghijklmnopqrstuvwxyz'
+
+alphabet_dict = {letter: 0 for letter in letters}
+
+# print(alphabet_dict)
+
+for char in file_list.lower():
+    if char in letters:
+        alphabet_dict[char] += 1
+
     
-alphabet = {}
+total_num_letters = sum(alphabet_dict.values())
 
-for line in fhand:
-    line = line.rstrip()
-    line = line.translate(str.maketrans('','', string.punctuation))
-    line = line.lower()
-    words = line.split()
-    # print(words)
-    for char in words:
-        alphabet[char] = alphabet.get(char, 0) + 1
-    print(alphabet)
+sorted_pairs = sorted([(value, key) for (key, value ) in alphabet_dict.items()], reverse=True)
+
+# print(sorted_pairs)
     
-lst = list()
-for key, val in list(alphabet.items()):
-    lst.append((val, key))
-
-lst.sort(reverse=True)
-
-for key, val in lst:
-    print(key, val)
+for value, letter in sorted_pairs:
+    percentage = 100 * value / total_num_letters
+    print(f'{letter}: {value}\t({percentage:.2f}%)')
