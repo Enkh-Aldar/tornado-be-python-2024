@@ -23,5 +23,3 @@ try:
 except:
     print("Wrong URL")
     exit()
-
-
