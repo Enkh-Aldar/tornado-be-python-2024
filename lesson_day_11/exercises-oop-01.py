@@ -12,7 +12,7 @@ class Restaurant:
 
 
 Altangadas = Restaurant('Altan Gadas', 'Mongoliin undesnii hool')
-Altangadas.open_restaurant()
+
 Altangadas.describe_restaurant()
 
 Yuna = Restaurant('Yuna', 'Korean')

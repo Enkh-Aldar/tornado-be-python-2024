@@ -9,9 +9,6 @@ class User:
     def greet_user(self):
         print(f'Hello i am {self.first_name} {self.last_name}')
         
-
-
-
 class Admin(User):
     privileges = []
     def __init__(self, first_name, last_name, privileges):
