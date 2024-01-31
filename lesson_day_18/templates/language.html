@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language</title>
+    <style>
+        * {
+            margin: auto;
+            background-color: aqua;
+        }
+
+        h1 {
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Language</h1>
+    {% for language in language_list %}
+    <table border="1">
+        <tr>
+            <th>
+                {{ language.language_id }}
+
+            </th>
+            <th>
+                {{ language.name }}
+            </th>
+        </tr>
+    </table>
+    {% endfor %}
+    <div class="pagination">
+        <span>
+            {% if current_page.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ current_page.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ current_page.number }} of {{ current_page.paginator.num_pages}} .
+            </span>
+
+            {% if current_page.has_next %}
+                <a href="?page={{ current_page.next_page_number }}">next</a>
+                <a href="?page={{ current.page.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+
+</html>
