@@ -10,3 +10,7 @@ class AboutPageView(TemplateView):
     
 class InfoPageView(TemplateView):
     template_name = "info.html"
+    
+
+class LoginPageView(TemplateView):
+    template_name = "accounts/login.html"
