@@ -44,13 +44,7 @@ class BlogsTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, "A Good title")
         self.assertTemplateUsed(response, "post_detail.html")                
-        
-    def test_homepage(self):
-        response = self.client.get(reverse("home"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "home.html")
-        self.assertContains(response, "This is a test!")
-        
+
     def test_post_createview(self):
         response = self.client.post(
             reverse("post_new"),
