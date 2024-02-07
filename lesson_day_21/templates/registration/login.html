@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body class="mx-10">
+    {% extends "base.html" %}
+    {% block title %}Log in{% endblock title %}
+    {% block content %}
+    <div class="ml-5">
+        <div class="float-right ml-2 border-solid border-4 border-blue-700 bg-blue-700 rounded px-4 py-1 font-bold">
+            <a href="{% url 'signup' %}" class="text-white">Sign up</a>
+        </div>
+        <div class="float-right border-solid border-4 border-blue-700 rounded px-4 py-1 font-bold">
+            <a href="{% url 'login' %}" class="text-blue-700">Log In</a>
+        </div>
+        <div class="flex my-3 text-2xl text-blue-700">Newspaper</div>
+
+        <hr>
+    </div>
+    <div class="">
+        <h2 class="pt-4 text-3xl">Log In</h2>
+        <form method="post" class="bg-white shadow-md rounded  pt-2 pb-8 mb-4">
+            {% csrf_token %}
+            <div class>Username*</div>
+            {{ form.username }}
+            <div>Password*</div>
+            {{ form.password }}
+            <div>
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+    {% endblock content %}
+
+</body>
+
+</html>
