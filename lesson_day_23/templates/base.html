@@ -1,0 +1,59 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Newspaper App {% endblock title %}</title>
+    {% tailwind_css %}
+</head>
+
+<body>
+    <div class="container">
+        <header class="p-3 mb-3 border">
+            <div class="container">
+                <div class="flex flex-wrap items-center justify-start">
+                    <a class="text-blue-700 text-2xl" href="{% url 'home' %}">Newspaper</a>
+                    <ul class="">
+                        {% if user.is_authenticated%}
+                        <li>
+                            <a href="{% url 'article_new' %}">+ New</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="">
+                    <ul>
+                        <div class="dropdown text-end">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'password_change'%}">Change Password</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                        {%else%}
+                    </ul>
+                    <div class="text-end">
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Log In</a>
+                        <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </div>
+</body>
+
+</html>

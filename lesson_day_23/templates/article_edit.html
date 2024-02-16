@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>Edit</h1>
+<form action="" method="POST">
+    {% csrf_token %} {{ form }}
+    <button type="submit">Update</button>
+</form>
+{% endblock content %}
