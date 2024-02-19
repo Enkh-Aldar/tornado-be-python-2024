@@ -2,15 +2,15 @@
 {% block title %}Articles{% endblock title %}
 {% block content %}
 {% for article in article_list %}
-<div class="card border-4 border-solid">
-    <div class="card-header my-2 ml-2 flex-auto text-gray-500 rounded-lg">
-        <span class="font-bold text-black" >{{ article.title }}</span>
+<div class="card border-2 border-solid">
+    <div class="card-header bg-gray-200 flex-auto text-gray-500 py-2 px-2">
+        <span class="font-bold text-black ">{{ article.title }}</span>
         <span class="text-muted">{{ article.author }} | {{ article.date }}</span>
     </div>
-    <div class="card-body my-2 ml-2">{{ article.body }}</div>
-    <div class="card-footer text-center text-muted text-blue-700 underline">
-        <a href="{% url 'article_edit' article.pk %}">Edit</a> |
-        <a href="{% url 'article_delete' article.pk %}">Delete</a>
+    <div class="card-body px-2 py-2">{{ article.body }}</div>
+    <div class="card-footer text-center text-muted text-blue-700 underline bg-gray-200 py-2">
+            <a href="{% url 'article_edit' article.pk %}">Edit</a> <span class="text-black"> | </span>
+            <a href="{% url 'article_delete' article.pk %}">Delete</a>
     </div>
 </div>
 <br />

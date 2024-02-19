@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="article-entry">
-    <h2>{{object.title}}</h2>
-    <p>by {{object.author}}| {{object.date}}
+    <h2 class="text-3xl font-bold py-2">{{object.title}}</h2>
+    <p class="py-2">by {{object.author}}| {{object.date}}
     </p>
-    <p>{{object.body}}</p>
+    <p class="py-2">{{object.body}}</p>
 </div>
-<p>
-    <a href="{% url 'article_edit' article.pk%}">Edit </a> |
-    <a href="{% url 'article_delete' article.pk %}">Delete </a>
+<p class="py-2">
+    <a href="{% url 'article_edit' article.pk%}" class="text-blue-500">Edit </a> |
+    <a href="{% url 'article_delete' article.pk %}"class="text-blue-500">Delete </a>
 </p>
-<p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+<p class="py-2">Back to <a href="{% url 'article_list' %}"class="text-blue-500">All Articles</a>.</p>
 {% endblock content %}

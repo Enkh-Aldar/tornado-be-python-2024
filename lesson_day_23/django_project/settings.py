@@ -147,3 +147,5 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 TAILWIND_APP_NAME = 'theme'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
