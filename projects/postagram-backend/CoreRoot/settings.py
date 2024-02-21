@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ydx$@59d=f=b+-9xkjdhpo&21wik=%c0mxc!_^#4!9!8!_0!k=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Postagram',
         'USER': 'postgres.mmtbnsvnkfonvlydjqum',
-        'PASSWORD': 'Aldraa102502',
+        'PASSWORD': 'XervCcaZ4xWT9FCE',
         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
         'PORT': '5432',
     }
