@@ -1,11 +1,12 @@
 import uuid
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from core.abstract.models import AbstractModel, AbstractManager
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.http import Http404
 
 
-class UserManager(BaseUserManager):
+class UserManager(BaseUserManager, AbstractManager):
     def get_object_by_public_id(self, public_id):
         try:
             instance = self.get(public_id=public_id)
@@ -21,8 +22,7 @@ class UserManager(BaseUserManager):
             raise TypeError('Users must have an email.')
         if password is None:
             raise TypeError('User must have a password.')
-        user = self.model(username=username,
-        email=self.normalize_email(email), **kwargs)
+        user = self.model(username=username, email=self.normalize_email(email), **kwargs)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -41,7 +41,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     public_id = models.UUIDField(db_index=True, unique=True,
         default=uuid.uuid4, editable=False)
     username = models.CharField(db_index=True,
@@ -54,6 +54,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+    post_liked = models.ManyToManyField(
+        "core_post.Post",
+        related_name="liked_by"
+    )
+    comment_liked = models.ManyToManyField(
+        "core_comment.Comment",
+        related_name="commented_by"
+    )
+
+    
     USERNAME_FIELD = 'email'
     
     REQUIRED_FIELDS = ['username']
@@ -63,3 +73,23 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
+    def like_post(self, post):
+        """Like `post` if it hasn't been done yet"""
+        return self.post_liked.add(post)
+    
+    def remove_like(self, post):
+        """Remove a like from a `post`"""
+        return self.post_liked.remove(post)
+    
+    def has_liked_post(self, post):
+        """Return True if the user has liked a `post`; else False"""
+        return self.post_liked.filter(pk=post.pk).exists()
+    def like_comment(self, comment):
+        """Like `comment` if it hasn't been done yet"""
+        return self.comment_liked.add(comment)
+    def remove_like_comment(self, comment):
+        """Remove a like from a `comment`"""
+        return self.comment_liked.remove(comment)
+    def has_liked_comment(self, comment):
+        """Return True if the user has liked a `comment`; else False"""
+        return self.comment_liked.filter(pk=comment.pk).exists()

@@ -15,7 +15,7 @@ function App() {
         "password": "12345678",
         "email": "mouse@yopmail.com"
       }
-  
+      
     const response = await axios.post("http://127.0.0.1:8000/api/auth/register/", bodyData);
     console.log(response)
     const jsonData = await response.data
