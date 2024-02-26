@@ -41,6 +41,8 @@ class UserManager(BaseUserManager, AbstractManager):
         user.save(using=self._db)
         return user
 
+
+
 class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     public_id = models.UUIDField(db_index=True, unique=True,
         default=uuid.uuid4, editable=False)
@@ -54,6 +56,9 @@ class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+    def user_directory_path(instance, filename):
+        return 'user_{0}/{1}'.format(instance.public_id, filename)
+    avatar = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
     post_liked = models.ManyToManyField(
         "core_post.Post",
         related_name="liked_by"
