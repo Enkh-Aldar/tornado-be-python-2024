@@ -1,15 +1,48 @@
 import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useUserActions } from "../../hooks/user.actions.js";
 
-const Login = () => {
+function LoginForm() {
+    
+    const navigate = useNavigate();
+    const [validated, setValidated] = useState(false);
+    const [form, setForm] = useState({});
+    const [error, setError] = useState(null);
+    const userActions = useUserActions();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const loginForm = event.currentTarget;
+        if (loginForm.checkValidity() === false) {
+            event.stopPropagation();
+        }
+        setValidated(true);
+        const data = {
+            username: form.username,
+            password: form.password,
+        };
+        axios.post("http://localhost:8000/api/auth/login/",
+            data)
+            .then((res) => {
+                // Registering the account and tokens in the
+                // store
+                localStorage.setItem("auth", JSON.stringify({
+                    access: res.data.access,
+                    refresh: res.data.refresh,
+                    user: res.data.user,
+                }));
+                navigate("/");
+            })
+            .catch((err) => {
+                if (err.message) {
+                    setError(err.request.response);
+                }
+            });
+    };
     return (
-        <div className="mx-auto">
-            <div className="my-5 text-center">
-                <h1 className="text-blue-700 text-3xl">Welcome to Postagram!</h1>
-                <p className="mt-10">Login now and start enjoying!</p>
-                <p className="">Or if you do not have an account, please <a className="text-green-700 underline" href="#">register.</a></p>
-            </div>
-            <form action="" className="border-2 w-[512px] mx-auto bg-blue-100 rounded-lg">
+        <form action="" className="border-2 w-[512px] mx-auto bg-blue-100 rounded-lg">
                 <div className="ml-10 mr-10">
                     <div className="mb-3">
                         <div className="mb-4 mt-10">
@@ -38,7 +71,6 @@ const Login = () => {
                     </div>
                 </div>
             </form>
-        </div>
-    )
+    );
 }
-export default Login;
+export default LoginForm;
