@@ -1,5 +1,6 @@
 import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
+import { getRefreshToken, getAccessToken } from "../hooks/user.actions";
 const axiosService = axios.create({
     baseURL: "http://localhost:8000",
     headers: {
@@ -14,7 +15,7 @@ axiosService.interceptors.request.use(async (config) => {
     */
     const { access } =
         JSON.parse(localStorage.getItem("auth"));
-    config.headers.Authorization = `Bearer ${access}`;
+    config.headers.Authorization = `Bearer ${getAccessToken()}`;
     return config;
 });
 var fruit = {
@@ -41,14 +42,15 @@ const refreshAuthLogic = async (failedRequest) => {
         .post("/refresh/token/", null, {
             baseURL: "http://localhost:8000",
             headers: {
-                Authorization: `Bearer ${refresh}`,
+                Authorization: `Bearer ${getRefreshToken()}`,
             },
         })
         .then((resp) => {
-            const { access, refresh } = resp.data;
+            const { access, refresh, user } = resp.data;
             failedRequest.response.config.headers[
                 "Authorization"] = "Bearer " + access;
             localStorage.setItem("auth", JSON.stringify({
+                access, refresh, user
             }))
                 .catch(() => {
                     localStorage.removeItem("auth");

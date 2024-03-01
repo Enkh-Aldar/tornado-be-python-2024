@@ -41,55 +41,109 @@ function RegistrationForm() {
                 }
             });
     };
-    
     return (
-        <form action="" className="form-horizontal border-2 w-[512px] mx-auto bg-blue-100 rounded-lg">
-                <div className="ml-10 mr-10">
-                    <div className="form-group mb-3">
-                        <div className="mb-4 mt-10">
-                            <label htmlFor="" className="">First Name </label>
-                        </div>
-                        <input type="text" className="first_name w-full py-3 rounded-lg" placeholder="  Enter first name" />
-                    </div>
-                    <div className="form-group mb-3">
-                        <div className="mb-4">
-                            <label htmlFor="" className="">Last Name </label>
-                        </div>
-                        <input type="text" className="last_name w-full py-3 rounded-lg" placeholder="  Enter last name" />
-                    </div>
-                    <div className="form-group mb-3">
-                        <div className="mb-4">
-                            <label htmlFor="" className="">Username </label>
-                        </div>
-                        <input type="text" className="username w-full py-3 rounded-lg" placeholder="  Enter username" />
-                    </div>
-                    <div className="form-group mb-3">
-                        <div className="mb-4 ">
-                            <label htmlFor="" className="">Email address </label>
-                        </div>
-                        <input type="email" className="email w-full py-3 rounded-lg" placeholder="  Enter email" />
-                    </div>
-                    <div className="form-group mb-3">
-                        <div className="mb-4 mt-4">
-                            <label htmlFor="">Password </label>
-                        </div>
-
-                        <input type="password" className="password w-full py-3 rounded-lg" placeholder="  Enter password" />
-                    </div>
-                    <div className="form-group mb-4">
-                        <div>
-                            <label htmlFor="">Bio</label>
-                        </div>
-                        <input type="text" className="bio w-full rounded-lg py-10" placeholder="  A simple bio ... (Optional)" />
-                    </div>
-                    <div className="form-group mb-10">
-                        <button type="submit" className="btn btn-primary px-7 py-3 rounded-lg border-2 bg-blue-600 text-white">
-                            Register
-                        </button>
-                    </div>
-                </div>
-
-            </form>
+        <Form id="registration-form" className="border p-4 rounded" noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                    value={form.first_name}
+                    onChange={(e) => setForm({
+                        ...form,
+                        first_name: e.target.value
+                    })}
+                    required
+                    type="text"
+                    placeholder="Enter first name"
+                />
+                <Form.Control.Feedback type="invalid">
+                    This file is required.
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Last name</Form.Label>
+                <Form.Control
+                    value={form.last_name}
+                    onChange={(e) => setForm({
+                        ...form,
+                        last_name: e.target.value
+                    })}
+                    required
+                    type="text"
+                    placeholder="Enter last name"
+                />
+                <Form.Control.Feedback type="invalid">
+                    This file is required.
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                    value={form.username}
+                    onChange={(e) => setForm({
+                        ...form, username:
+                            e.target.value
+                    })}
+                    required
+                    type="text"
+                    placeholder="Enter username"
+                />
+                <Form.Control.Feedback type="invalid">
+                    This file is required.
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                    value={form.email}
+                    onChange={(e) => setForm({
+                        ...form, email:
+                            e.target.value
+                    })}
+                    required
+                    type="email"
+                    placeholder="Enter email"
+                />
+                <Form.Control.Feedback type="invalid">
+                    Please provide a valid email.
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                    value={form.password}
+                    minLength="8"
+                    onChange={(e) => setForm({
+                        ...form, password:
+                            e.target.value
+                    })}
+                    required
+                    type="password"
+                    placeholder="Password"
+                />
+                <Form.Control.Feedback type="invalid">
+                    Please provide a valid password.
+                </Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group className="mb-3">
+                <Form.Label>Bio</Form.Label>
+                <Form.Control
+                    value={form.bio}
+                    onChange={(e) => setForm({
+                        ...form, bio:
+                            e.target.value
+                    })}
+                    as="textarea"
+                    rows={3}
+                    placeholder="A simple bio ... (Optional)"
+                />
+            </Form.Group>
+            <div className="text-content text-danger">
+                {error && <p>{error}</p>}
+            </div>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Form>
     );
-}
+};
 export default RegistrationForm;

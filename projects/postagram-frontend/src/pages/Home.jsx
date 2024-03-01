@@ -17,6 +17,8 @@ function Home() {
     return (
         <div>
             <h1>Profile</h1>
+            <h1>HOME</h1>
+            
             {data.length === 0 ? (
                 <div>Loading</div>
             ) : (

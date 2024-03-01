@@ -33,7 +33,6 @@ class UserSerializer(AbstractSerializer):
             "last_name",
             "email",
             "avatar",
-            # "bio",
             "is_active",
             "created",
             "updated",
