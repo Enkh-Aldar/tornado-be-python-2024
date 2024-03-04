@@ -24,23 +24,29 @@ function LoginForm() {
             email: form.email,
             password: form.password,
         };
-        axios.post("http://localhost:8000/api/auth/login/",
-            data)
-            .then((res) => {
-                // Registering the account and tokens in the
-                // store
-                localStorage.setItem("auth", JSON.stringify({
-                    access: res.data.access,
-                    refresh: res.data.refresh,
-                    user: res.data.user,
-                }));
-                navigate("/");
-            })
+        userActions.login(data)
             .catch((err) => {
                 if (err.message) {
                     setError(err.request.response);
                 }
             });
+        // axios.post("http://localhost:8000/api/auth/login/",
+        //     data)
+        //     .then((res) => {
+        //         // Registering the account and tokens in the
+        //         // store
+        //         localStorage.setItem("auth", JSON.stringify({
+        //             access: res.data.access,
+        //             refresh: res.data.refresh,
+        //             user: res.data.user,
+        //         }));
+        //         navigate("/");
+        //     })
+        //     .catch((err) => {
+        //         if (err.message) {
+        //             setError(err.request.response);
+        //         }
+        //     });
     };
     return (
         <Form

@@ -24,7 +24,7 @@ function Home() {
             ) : (
                 data.map((d, index) => (
                     <div key={index} className="text-3xl text-green-700">
-                        {[d.body]} {[d.id]}
+                        {[d.body]} {[d.author.username]}
                     </div>
                 ))
             )}

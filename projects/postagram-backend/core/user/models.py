@@ -6,6 +6,7 @@ from django.db import models
 from django.http import Http404
 
 
+
 class UserManager(BaseUserManager, AbstractManager):
     def get_object_by_public_id(self, public_id):
         try:
@@ -44,10 +45,7 @@ class UserManager(BaseUserManager, AbstractManager):
 
 
 class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
-    public_id = models.UUIDField(db_index=True, unique=True,
-        default=uuid.uuid4, editable=False)
-    username = models.CharField(db_index=True,
-        max_length=255, unique=True)
+    username = models.CharField(db_index=True, max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(db_index=True, unique=True)
@@ -56,9 +54,10 @@ class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     is_staff = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
-    def user_directory_path(instance, filename):
-        return 'user_{0}/{1}'.format(instance.public_id, filename)
-    avatar = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
+    bio = models.TextField(null=True)
+    avatar = models.ImageField(null=True)
+
+
     post_liked = models.ManyToManyField(
         "core_post.Post",
         related_name="liked_by"
@@ -75,6 +74,8 @@ class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     objects = UserManager()
     def __str__(self):
         return f"{self.email}"
+
+    
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
@@ -98,3 +99,6 @@ class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
     def has_liked_comment(self, comment):
         """Return True if the user has liked a `comment`; else False"""
         return self.comment_liked.filter(pk=comment.pk).exists()
+    def user_directory_path(instance, filename):
+        return 'user_{0}/{1}'.format(instance.public_id, filename)
+    avatar = models.ImageField(null=True, blank=True, upload_to=user_directory_path)
