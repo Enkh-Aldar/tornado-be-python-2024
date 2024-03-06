@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import NavigationBar from "./NavigationBar";
+
 function Home() {
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -16,6 +18,7 @@ function Home() {
 
     return (
         <div>
+            <NavigationBar />
             <h1>Profile</h1>
             <h1>HOME</h1>
             

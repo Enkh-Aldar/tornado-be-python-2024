@@ -16,7 +16,7 @@ function useUserActions() {
             data).then((res) => {
                 // Registering the account and tokens in the
                 // store
-                setUserData(res);
+                setUserData(res.data);
                 navigate("/");
             });
     }
@@ -29,7 +29,7 @@ function useUserActions() {
         return axios.post(`${baseURL}/auth/register/`, data).then((res) => {
                 // Registering the account and tokens in the
                 // store
-                setUserData(res);
+                setUserData(res.data);
                 navigate("/");
             });
             
@@ -55,14 +55,14 @@ function getRefreshToken() {
 }
 // Set the access, token and user property
 
-function setUserData(res) {
-    console.log(res)
+function setUserData(data) {
+    console.log(data)
     localStorage.setItem(
         "auth",
         JSON.stringify({
-            access: res.data.access,
-            refresh: res.data.refresh,
-            user: res.data.user,
+            access: data.access,
+            refresh: data.refresh,
+            user: data.user,
         })
     );
 }

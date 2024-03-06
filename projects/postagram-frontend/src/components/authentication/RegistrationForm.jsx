@@ -26,6 +26,7 @@ function RegistrationForm() {
             bio: form.bio,
         };
         userActions.register(data)
+        
         // axios.post("http://localhost:8000/api/auth/register/",
         //     data)
         //     .then((res) => {

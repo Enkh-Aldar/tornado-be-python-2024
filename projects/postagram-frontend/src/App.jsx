@@ -4,6 +4,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login"
 import Register from "./pages/Register";
+import NavigationBar from "./pages/NavigationBar";
+import Logout from "./pages/Logout";
 function App() {
   return (
     <Routes>
@@ -13,6 +15,7 @@ function App() {
         </ProtectedRoute>
       } />
       <Route path="/login/" element={<Login />} />
+      <Route path="/logout" element={<Logout />} />
       <Route path="/register/" element={<Register />} />
     </Routes>
   );
