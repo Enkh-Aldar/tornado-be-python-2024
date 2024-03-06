@@ -14,6 +14,7 @@ class UserSerializer(AbstractSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         request = self.context.get('request')
+        print("Test reg: ", representation['id'])
         if not representation['avatar']:
             representation['avatar'] = settings.DEFAULT_AVATAR_URL
             return representation
@@ -31,7 +32,6 @@ class UserSerializer(AbstractSerializer):
             "last_name",
             "email",
             "avatar",
-            "bio",
             "is_active",
             "created",
             "updated",
