@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
+import CreatePost from "./CreatePost";
 
 function Home() {
     const [data, setData] = useState([]);
@@ -19,6 +20,9 @@ function Home() {
     return (
         <div>
             <NavigationBar />
+            <div>
+                <CreatePost />
+            </div>
             <h1>Profile</h1>
             <h1>HOME</h1>
             

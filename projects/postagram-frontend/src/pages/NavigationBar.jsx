@@ -6,7 +6,7 @@ function NavigationBar() {
     const user = getUser();
     
     return (
-        <nav className="bg-blue-600 border-gray-200 dark:bg-gray-900 text-white py-2 px-4">
+        <nav className="bg-blue-600 border-gray-200 text-white py-2 px-4">
             <div className="flex flex-wrap items-center justify-between">
                 <span className="text-2xl font-semibold dark:text-white p-2">Postagram</span>
                 <div className="flex items-center ml-auto">
