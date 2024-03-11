@@ -1,5 +1,6 @@
 from django.db import models
 from core.abstract.models import AbstractModel, AbstractManager
+from django.urls import reverse
 
 class PostManager(AbstractManager):
     pass
@@ -11,4 +12,5 @@ class Post(AbstractModel):
     
     objects = PostManager()
     def __str__(self):
-        return f"{self.author.name}"
+        return f"{self.body}"
+    
