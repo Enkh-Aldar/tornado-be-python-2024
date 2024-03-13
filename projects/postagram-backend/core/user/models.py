@@ -67,6 +67,7 @@ class User(AbstractBaseUser, AbstractModel, PermissionsMixin):
         "core_comment.Comment",
         related_name="commented_by"
     )
+    print(comment_liked)
 
     
     USERNAME_FIELD = 'email'

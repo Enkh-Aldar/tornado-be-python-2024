@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
-import CreatePost from "./CreatePost";
+import CreatePost from "../posts/CreatePost";
 import { getUser } from "../hooks/user.actions";
 import { fetcher } from "../helpers/axios";
 import useSWR from 'swr'
-import Post from "./Post";
-import Posts from "./Posts";
+import Post from "../posts/Post";
+import Posts from "../posts/Posts";
+import Comments from "../posts/comments/Comments";
 
-function Home() {
+function Home(post) {
     const user = getUser();
     const posts = useSWR("/post/", fetcher, {
         refreshInterval: 20000,
@@ -17,9 +18,6 @@ function Home() {
     const profiles = useSWR("/user/?limit=5", fetcher);
 
 
-    if (!user) {
-        return <div>Loading!</div>;
-    }
     return (
         <div>
             <NavigationBar />
@@ -30,8 +28,8 @@ function Home() {
                         <CreatePost refresh={posts.mutate} />
                     </div>
                     <Posts posts={posts.data} refresh={posts.mutate}/>
-                    
                 </div>
+
                 <div className="lg:col-span-1 col-span-4 border rounded-lg p-4 flex flex-col space-y-3">
                     <div className="text-xl text-center text-blue-500 font-semibold">
                         Other profiles

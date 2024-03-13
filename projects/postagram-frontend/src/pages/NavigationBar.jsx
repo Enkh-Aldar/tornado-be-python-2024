@@ -10,7 +10,7 @@ function NavigationBar() {
             <div className="flex flex-wrap items-center justify-between">
                 <span className="text-2xl font-semibold dark:text-white p-2">Postagram</span>
                 <div className="flex items-center ml-auto">
-                    <img className="w-8 h-8 rounded-full" src={user.avatar} alt="user photo"/>
+                    <img className="w-8 h-8 border-2 border-indigo-700 rounded-full bg-white" src={user.avatar} alt="user photo"/>
                     <Dropdown>
                         <Dropdown.Toggle variant="" id="dropdownUserAvatarButton" className="text-white mr-0">
                             <span className="sr-only">Open user menu</span>

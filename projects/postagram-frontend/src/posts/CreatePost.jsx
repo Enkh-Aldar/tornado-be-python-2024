@@ -46,13 +46,13 @@ function CreatePost({refresh}) {
         <div className="mt-4 w-full mr-6 border-gray-200 py-4 rounded-2xl">
             <textarea
                 id="message"
-                rows="4"
+                rows={1}
                 className="border-2 border-indigo-700 ml-4 pl-4 py-1 w-full rounded-full placeholder-blue-700"
                 placeholder="Write a post"
                 value={form}
                 onChange={(e) => setForm(e.target.value)}
             ></textarea>
-            <button onClick={handlePost}>Post</button>
+            <button className="float-right mt-3 border-2 border-indigo-600 bg-blue-700 text-white rounded-xl py-2 px-4"onClick={handlePost}>Post</button>
         </div>
     );
 }
