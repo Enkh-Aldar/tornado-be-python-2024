@@ -1,9 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axiosService from "../../helpers/axios";
+import { getUser } from "../../hooks/user.actions";
 
 function Comment({ post }) {
     const [comments, setComments] = useState(post.comments || []);
     const [newComment, setNewComment] = useState('');
+    const user = getUser();
 
     const handleCommentSubmit = async () => {
         try {
@@ -11,20 +13,21 @@ function Comment({ post }) {
                 console.error('Post ID is undefined.');
                 return;
             }
+            const newCommentObj = {
+                author: user.id,
+                body: newComment,
+                post: post.id
+            };
 
             const response = await axiosService.post(`/post/${post.id}/comment/`, {
-                content: newComment,
+                body: newCommentObj,
             });
 
             console.log('Comment created successfully:', response.data);
 
-            const newCommentObj = {
-                user: user.username,
-                content: newComment,
-                createdAt: response.data.createdAt,
-            };
+            // Add the new comment to the comment list
+            setComments([...comments, newCommentObj]);
 
-            setComments((prevComments) => [...prevComments, newCommentObj]);
             setNewComment('');
         } catch (error) {
             console.error('Error submitting comment:', error);
@@ -33,6 +36,13 @@ function Comment({ post }) {
 
     return (
         <div className="mt-4">
+            <div className="comment-list">
+                {comments.map((comment, index) => (
+                    <div key={index} className="comment">
+                        <p>Author: {comment.author} {comment.body}</p>
+                    </div>
+                ))}
+            </div>
             <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}

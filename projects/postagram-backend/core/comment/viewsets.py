@@ -29,8 +29,8 @@ class CommentViewSet(AbstractViewSet):
         return obj
     
     def create(self, request, *args, **kwargs):
-        print("regdata:", request.data)
-        serializer = self.get_serializer(data=request.data)
+        print("regdata:", request.data["body"])
+        serializer = self.get_serializer(data=request.data["body"])
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
