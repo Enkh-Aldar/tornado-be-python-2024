@@ -14,6 +14,10 @@ function Home(post) {
         refreshInterval: 20000,
     });
     console.log(posts.data)
+    // const comments = useSWR(`/post/${post.id}/comment/`, fetcher, {
+    //     refreshInterval: 20000,
+    // });
+    // console.log(comments.data)
 
     const profiles = useSWR("/user/?limit=5", fetcher);
 
@@ -28,6 +32,7 @@ function Home(post) {
                         <CreatePost refresh={posts.mutate} />
                     </div>
                     <Posts posts={posts.data} refresh={posts.mutate}/>
+                    {/* <Comments comments={comments.data} refresh={comments.mutate} /> */}
                 </div>
 
                 <div className="lg:col-span-1 col-span-4 border rounded-lg p-4 flex flex-col space-y-3">

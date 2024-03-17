@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import axiosService from "../../helpers/axios";
 import { getUser } from "../../hooks/user.actions";
+import useSWR from "swr"; // Import useSWR
+import { fetcher } from "../../helpers/axios";
 
 function Comment({ post }) {
-    const [comments, setComments] = useState(post.comments || []);
     const [newComment, setNewComment] = useState('');
     const user = getUser();
+
+    // Fetch comments using useSWR
+    const { data: comments, error } = useSWR(`/post/${post.id}/comment/`, fetcher, async () => {
+        const response = await axiosService.get(`/post/${post.id}/comment/`);
+        return response.data;
+    });
 
     const handleCommentSubmit = async () => {
         try {
@@ -25,21 +32,29 @@ function Comment({ post }) {
 
             console.log('Comment created successfully:', response.data);
 
-            // Add the new comment to the comment list
-            setComments([...comments, newCommentObj]);
-
+            // Automatically update comments when a new comment is posted
             setNewComment('');
         } catch (error) {
             console.error('Error submitting comment:', error);
         }
     };
 
+    if (error) return <div>Error fetching comments</div>;
+    if (!comments) return <div>Loading...</div>;
+
     return (
         <div className="mt-4">
             <div className="comment-list">
                 {comments.map((comment, index) => (
                     <div key={index} className="comment">
-                        <p>Author: {comment.author} {comment.body}</p>
+                        <div className="flex align-middle items-center">
+                        <p><img src={user.avatar} className="w-8 h-8" alt="" />
+                        </p>
+                        <p className="ml-3 text-2xl"> {comment.author.username}</p>
+                        </div>
+                        <div>
+                            <p className=" text-xl">{comment.body}</p>
+                        </div>
                     </div>
                 ))}
             </div>

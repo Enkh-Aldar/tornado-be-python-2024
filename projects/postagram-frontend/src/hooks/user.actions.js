@@ -66,4 +66,26 @@ function setUserData(data) {
         })
     );
 }
-export {useUserActions, getAccessToken, getRefreshToken, getUser};
+async function refreshAccessToken(refreshToken) {
+    try {
+        const res = await axios.post(`${baseURL}/auth/refresh/`, { refresh: refreshToken });
+        setAccessToken(res.data.access);
+        return res.data.access;
+    } catch (error) {
+        console.error("Error refreshing access token:", error);
+        throw error;
+    }
+}
+
+// Function to set access token in local storage
+function setAccessToken(accessToken) {
+    const authData = JSON.parse(localStorage.getItem("auth"));
+    localStorage.setItem(
+        "auth",
+        JSON.stringify({
+            ...authData,
+            access: accessToken
+        })
+    );
+}
+export {useUserActions, getAccessToken, getRefreshToken, getUser, setAccessToken, refreshAccessToken};

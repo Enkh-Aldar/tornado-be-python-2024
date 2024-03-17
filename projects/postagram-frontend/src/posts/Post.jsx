@@ -40,14 +40,16 @@ function Post({ post }) {
           <div className=' py-3'>
             {post.body}
           </div>
-          <div className="flex items-center space-x-4">
-            <button onClick={handleLike} className="text-blue-500">Like</button>
-            <span>{likes} Likes</span>
+          <div>
+            <Comment post={post} />
+            <div className="flex items-center space-x-4">
+              <button onClick={handleLike} className="text-blue-500">Like</button>
+              <span>{likes} Likes</span>
+              <ul className="mt-4">
+                <Comments />
+              </ul>
+            </div>
           </div>
-          <Comment post={post}/>
-          <ul className="mt-4">
-            <Comments />
-          </ul>
         </li>
       </ul>
     </div>
