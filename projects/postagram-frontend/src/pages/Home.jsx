@@ -4,9 +4,8 @@ import CreatePost from "../posts/CreatePost";
 import { getUser } from "../hooks/user.actions";
 import { fetcher } from "../helpers/axios";
 import useSWR from 'swr'
-import Post from "../posts/Post";
 import Posts from "../posts/Posts";
-import Comments from "../posts/comments/Comments";
+import ProfileCard from "./ProfileCard";
 
 function Home(post) {
     const user = getUser();
@@ -20,7 +19,6 @@ function Home(post) {
     // console.log(comments.data)
 
     const profiles = useSWR("/user/?limit=5", fetcher);
-
 
     return (
         <div>
