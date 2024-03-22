@@ -106,11 +106,16 @@ WSGI_APPLICATION = 'CoreRoot.wsgi.application'
 # }
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "postagram.sqlite",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postagram',
+        'USER': 'Aldaraa',
+        'PASSWORD': 'Aldraa102502',
+        'HOST': 'postagram-1.cfwu2004wqu7.ap-southeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
