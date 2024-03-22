@@ -39,19 +39,19 @@ function useUserActions() {
 function getUser() {
     const auth =
         JSON.parse(localStorage.getItem("auth"));
-    return auth.user;
+    return auth?.user;
 }
 // Get the access token
 function getAccessToken() {
     const auth =
         JSON.parse(localStorage.getItem("auth"));
-    return auth.access;
+    return auth?.access;
 }
 // Get the refresh token
 function getRefreshToken() {
     const auth =
         JSON.parse(localStorage.getItem("auth"));
-    return auth.refresh;
+    return auth?.refresh;
 }
 // Set the access, token and user property
 

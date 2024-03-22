@@ -170,7 +170,7 @@ MEDIA_ROOT = BASE_DIR / 'uploads'
 DEFAULT_AVATAR_URL = "https://api.dicebear.com/7.x/pixel-art/svg"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://postagram-project-app.s3-website-ap-southeast-1.amazonaws.com/",
+    "https://postagram-project-app.s3-website-ap-southeast-1.amazonaws.com",
     "http://127.0.0.1:3000"
 ]
 
