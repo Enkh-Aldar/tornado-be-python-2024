@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function useUserActions() {
     const navigate = useNavigate();
-    const baseURL = "https://aldar.ilearn.mn/api";
+    const baseURL = "http://aldar.ilearn.mn/api";
     return {
         login,
         register,
