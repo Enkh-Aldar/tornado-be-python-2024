@@ -2,7 +2,7 @@ import axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { getRefreshToken, getAccessToken } from "../hooks/user.actions";
 const axiosService = axios.create({
-    baseURL: "https://aldar.ilearn.mn/api",
+    baseURL: "http://aldar.ilearn.mn/api",
     headers: {
         "Content-Type": "application/json",
     },
@@ -29,7 +29,7 @@ const refreshAuthLogic = async (failedRequest) => {
                 refresh: getRefreshToken(),
             }, 
             {
-            baseURL: "https://aldar.ilearn.mn/api/",
+            baseURL: "http://aldar.ilearn.mn/api/",
         })
         .then((resp) => {
             const { access, refresh, user } = resp.data;
